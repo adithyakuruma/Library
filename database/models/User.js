@@ -19,21 +19,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide your phone Number.']
   },
-  experience: {
-    type: String,
-    required: [true, 'Please provide your expereience.']
-  },
-  skills: {
-    type: String,
-    required: [true, 'Please provide your skills.']
-  },
-  aadhar: {
-    type: String,
-    required: [true, 'Please provide your adhaar.']
-  },
-  resume: {
-    type: String,
-  },
+
   address: {
     type: String,
     required: [true, 'Please provide your password.']
@@ -41,7 +27,12 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "user"
-  }
+  },
+  image: String,
+  createdAt: {
+    type: Date,
+    default: new Date()
+  },
 
 })
 

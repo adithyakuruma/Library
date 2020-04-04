@@ -1,0 +1,59 @@
+@layout('layouts.app')
+
+@section('content')
+<!-- Page Header -->
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>My Profile</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="row">
+                <div class="col-md-6"> <img src="{{user.image}}" alt="" height="200px" width="250px">
+                </div>
+                <form action="/users/register" method="POST" encType="multipart/form-data">
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Username</label>
+                            <input type="text" name="username" value="{{ user.username || '' }}" required
+                                placeholder="Username" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Email</label>
+                            <input type="email" name="email" value="{{ user.email || '' }}" required placeholder="Email"
+                                class="form-control" disabled="disabled">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Phone Number</label>
+                            <input type="text" name="phoneNumber" value="{{ user.phoneNumber || '' }}" required
+                                placeholder="Phone Number" class="form-control" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Address</label>
+                            <input type="text" name="address" value="{{ user.address || '' }}" required
+                                placeholder="Address" class="form-control" disabled="disabled">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    @endsection

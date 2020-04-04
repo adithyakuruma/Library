@@ -27,9 +27,9 @@ const applicationsController = require("./controllers/applications")
 const deletePostcontroller = require("./controllers/deletePost")
 const acceptRequestscontrollers = require("./controllers/acceptRequests")
 const acceptApprovalsController = require("./controllers/acceptApprovals")
-
+const userProfileController = require("./controllers/userProfile")
 const app = new express();
-mongoose.connect("mongodb://localhost/node-js-blog");
+mongoose.connect("mongodb://localhost/library");
 
 app.use(connectFlash());
 
@@ -71,15 +71,16 @@ app.get("/auth/Companylogin", redirectIfAuthenticated, companyloginController);
 app.post("/users/login", redirectIfAuthenticated, loginUserController);
 app.post("/company/login", redirectIfAuthenticated, loginCompanyController);
 app.get("/auth/userRegister", redirectIfAuthenticated, createUserController);
-app.get("/auth/companyRegister", redirectIfAuthenticated,createCompanyController);
+app.get("/auth/companyRegister", redirectIfAuthenticated, createCompanyController);
 app.post("/users/register", redirectIfAuthenticated, storeUserController);
 app.post("/company/register", redirectIfAuthenticated, storeCompanyController);
-app.get("/apply/:id",applyPostController);
-app.get("/company/posts",companyPostsController);
-app.get("/applications/:id",applicationsController)
-app.get("/delete/:id",deletePostcontroller)
-app.get("/users/vishalUsers",acceptRequestscontrollers)
-app.get("/acceptApprovals/:id",acceptApprovalsController)
+app.get("/apply/:id", applyPostController);
+app.get("/company/posts", companyPostsController);
+app.get("/applications/:id", applicationsController)
+app.get("/delete/:id", deletePostcontroller)
+app.get("/users/authors", acceptRequestscontrollers)
+app.get("/acceptApprovals/:id", acceptApprovalsController)
+app.get("/auth/userProfile", userProfileController)
 app.use((req, res) => res.render('not-found'));
 
 app.listen(4000, () => {

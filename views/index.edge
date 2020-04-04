@@ -2,6 +2,9 @@
 
 @section('content')
 <!-- Page Header -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
 <header class="masthead" style="background-image: url('img/home-bg.jpg')">
   <div class="overlay"></div>
   <div class="container">
@@ -9,11 +12,15 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
           @if(company.role == "company")
-          <h1>welcome {{company.Companyname}}</h1>
-          <span class="subheading">{{company.description}}</span>
+          <h1>welcome {{company.ownername}}</h1>
+          <span class="subheading">{{company.Companyname}}</span>
+          @elseif(user.role=="user")
+          <h1>welcome {{user.username}}</h1>
           @else
-          <h1>Demo</h1>
-          <span class="subheading">Demo posts</span>
+          <h1>WELCOME</h1>
+          <span class="subheading ">Empowering you to succeed,
+            academically and professionally </span>
+          <h4>DIGITAL LIBRARY</h4>
           @endif
 
 
@@ -29,39 +36,94 @@
 @endif
 <div class="container">
   <div class="row">
+
     <div class="col-lg-8 col-md-10 mx-auto">
       @if(user.role == "user" )
-      @each(post in posts)
-      <div class="post-preview">
-        <a href="/post/{{ post._id }}">
-          <h2 class="post-title">
-            {{ post.title }}
-          </h2>
-        </a>
-        <article>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
-                        {{{ post.content }}}
-                    </div>
-                </div>
-            </div>
-        </article>
-        <p class="post-meta">Posted by
-          <a href="#">{{ post.author.Companyname }}</a>
-          on {{ post.createdAt.toDateString() }}</p>
-      </div>
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
       <hr>
-      @endeach
+      <div id="myDIV" class="mt-3">
+        @each(post in posts)
+        <div class="post-preview">
+
+          <a href="/post/{{ post._id }}">
+            <div class="row">
+              <div class="col-md-6"> <img src="{{post.image}}" alt="" height="200px" width="200px">
+              </div>
+              <div class="col-md-6">
+                <h2 class="post-title">
+                  {{ post.title }}
+                </h2>
+                <article>
+                  <div class="container">
+                    {{{ post.content }}}
+                  </div>
+                </article>
+
+                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                  <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                  <a class="a2a_button_facebook"></a>
+                  <a class="a2a_button_google_gmail"></a>
+                  <a class="a2a_button_whatsapp"></a>
+                </div>
+                <script>
+                  var a2a_config = a2a_config || {};
+                  a2a_config.onclick = 1;
+                  a2a_config.num_services = 4;
+                </script>
+                <script async src="https://static.addtoany.com/menu/page.js"></script>
+                <p class="post-meta">Posted by
+                  <a href="#">{{ post.author.Companyname }}</a>
+                  on {{ post.createdAt.toDateString() }}</p>
+              </div>
+            </div>
+          </a>
+          </ul>
+        </div>
+        <hr>
+        @endeach
+      </div>
       <div class="clearfix">
         <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
       </div>
       @endif
-      <!-- Pager -->
+      <hr>
+      @if(!auth || company.role == "company")
+
+      <div>
+        <p>
+          <b>Are you ready to start learning?</b><br>
+          As the world’s largest publisher of eBooks, we democratise learning by empowering students and business
+          professionals to succeed with high-quality business eBooks and free textbooks for students from
+          industry-leading experts and professors.
+        </p>
+        <hr>
+        <p>
+          Learn in less than two hours
+          Upskill yourself in just one to two hours through our hands-on, bite-sized format. Written for time-pressured
+          learners, our eBooks allow you to hone skills today and apply them tomorrow.</p>
+        <hr>
+        <p>
+          <B>Anywhere, anytime.</B>
+          Download eBooks through an incredibly easy-to-use online platform optimised for desktops, tablets, and mobile.
+          Similar to popular video streaming services, continue reading where you left off.
+        </p>
+      </div>
+      @endif
+      <!-- Pager-->
 
     </div>
   </div>
 </div>
 
+<script>
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myDIV *").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 <hr>
 @endsection

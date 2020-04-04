@@ -15,21 +15,18 @@ const CompanySchema = new mongoose.Schema({
         unique: true,
         required: [true, 'Please provide your email.']
     },
-    pan: {
-        type: String,
-        required: [true, 'Please provide your PAN.']
-    },
+
     description: {
         type: String,
         required: [true, 'Please provide your description.']
     },
     Contact: {
         type: String,
-        required: [true, 'Please provide your adhaar.']
+        required: [true, 'Please provide your contact number.']
     },
     address: {
         type: String,
-        required: [true, 'Please provide your password.']
+        required: [true, 'Please provide your address.']
     },
     password: {
         type: String,
@@ -37,11 +34,11 @@ const CompanySchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default:"company"
+        default: "company"
     },
-    status:{
+    status: {
         type: String,
-        default : "NotActive"
+        default: "NotActive"
     }
 })
 

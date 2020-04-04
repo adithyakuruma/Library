@@ -18,7 +18,7 @@ module.exports = (req, res) => {
         })
       }
       else {
-        req.flash('data', 'Company Profile under Review Please Contact Admin : demo@demo.com ')
+        req.flash('data', 'Author Profile under Review Please Contact Admin : teamc2@gnitc.com ')
         return res.redirect('/auth/Companylogin')
       }
     }

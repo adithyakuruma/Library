@@ -13,6 +13,11 @@ const PostSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date()
+  },
+  pdf: String,
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
 })
 

@@ -9,6 +9,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-heading">
                     <h1>{{ posts.title }}</h1>
+                    <h1>(url('{{ posts.image }}')</h1>
                     <span class="meta">Posted by
                         <a href="#">{{ posts.author.Companyname }}</a>
                         on {{ posts.createdAt.toDateString() }}</span>
@@ -23,7 +24,7 @@
 
 
 <div class="container">
-        <h1>Applied Candiates for {{posts.title}}</h1> 
+        <h1>Viewers for {{posts.title}}</h1> 
 <br>
     <table class="table table-striped">
         <tr>
@@ -36,31 +37,13 @@
             <th>
                 Email
             </th>
-            <th>
-                Skills
-            </th>
-            <th>
-                Experience
-            </th>
-            <th>
-                Resume
-            </th>
-            <th>
-                Aadhaar
-            </th>
-
         </tr>
         @each(post in posts.Applicants)
         <tr>
             <td>{{post.username}}</td>
             <td>{{post.phoneNumber}}</td>
             <td>{{post.email}}</td>
-            <td>{{post.skills}}</td>
-            <td>{{post.experience}}</td>
-            <td><a href="{{post.resume}}" target="_blank">view</a></td>
-            <td><a href="{{post.aadhar}}" target="_blank">View</a></td>
         </tr>
-
         @endeach
     </table>
 </div>
