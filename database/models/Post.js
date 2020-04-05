@@ -14,7 +14,9 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: new Date()
   },
-  pdf: String,
+  flnk: String,
+  lnk: String,
+
   createdAt: {
     type: Date,
     default: new Date()
