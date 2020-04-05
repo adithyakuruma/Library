@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body onload="dark_mode()">
 
 
 
@@ -46,7 +46,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
-          
+
           @if(company.role == "company")
           <li class="nav-item">
             <a class="nav-link" href="/posts/new">New Book</a>
@@ -59,23 +59,41 @@
           <li class="nav-item">
             <a class="nav-link" href="/auth/userProfile">{{user.username}}</a>
           </li>
- <style>
-    .dark-mode {
-      background-color: #84613daa;
-      color: white;
-     
-    }
-  </style>
-  <script>
-    function myFunction() {
-      var element = document.body;
-      element.classList.toggle("dark-mode");
-    }
-  </script>
+          <style>
+            .dark-mode {
+              background-color: rgb(0, 0, 0, 0.7);
+              color: white;
+
+            }
+          </style>
+          <script>
+            function dark_mode() {
+              if (localStorage.getItem("dark") == "true") {
+                var element = document.body;
+                element.classList.add("dark-mode");
+                document.getElementById("mode").innerHTML = "light mode";
+                document.getElementById("mode").setAttribute("onClick", "javascript: light();");
+              }
+              else if (localStorage.getItem("dark") == "false") {
+                var element = document.body;
+                element.classList.remove("dark-mode");
+                document.getElementById("mode").innerHTML = "dark mode";
+                document.getElementById("mode").setAttribute("onClick", "javascript: dark();");;
+              }
+            }
+            function dark() {
+              localStorage.setItem("dark", "true");
+              location.reload();
+            }
+            function light() {
+              localStorage.setItem("dark", "false");
+              location.reload();
+            }
+          </script>
 
 
           <li class="nav-item">
-            <a onclick="myFunction()">dark mode</a>
+            <a onclick="dark()" id="mode">dark mode</a>
           </li>
           @endif
           @if(!auth)
