@@ -7,8 +7,9 @@ module.exports = async (req, res) => {
   const post = await Post.findById(req.params.id).populate('author');
   const company = await Company.findById(req.session.userId)
   const user = await User.findById(req.session.userId)
-
+  const header = req.headers.host
   res.render("post", {
-    post,company,user
+    post, company, user, header
+
   });
 }

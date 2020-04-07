@@ -8,7 +8,6 @@ const CompanySchema = new mongoose.Schema({
     },
     Companyname: {
         type: String,
-        required: [true, 'Please provide your Company name']
     },
     email: {
         type: String,

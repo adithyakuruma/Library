@@ -10,7 +10,7 @@
         <div class="post-heading">
           <h1>{{ post.title }}</h1>
           <span class="meta">Posted by
-            <a href="#">{{ post.author.Companyname }}</a>
+            {{ post.author.ownername }}
             on {{ post.createdAt.toDateString() }}</span>
         </div>
       </div>
@@ -19,11 +19,24 @@
 </header>
 
 <!-- Post Content -->
-
 <article>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+          <h5>Share Now</h5>
+          <!-- <a class="a2a_dd" href="https://www.addtoany.com/share"></a> -->
+          <a class="a2a_button_facebook"></a>
+          <a class="a2a_button_google_gmail"></a>
+          <a class="a2a_button_whatsapp"></a>
+        </div>
+        <script>
+          var a2a_config = a2a_config || {};
+          a2a_config.onclick = 1;
+          a2a_config.num_services = 4;
+        </script>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+
         {{{ post.content }}}
       </div>
     </div>
@@ -40,91 +53,9 @@
     class="frame-area">
   </iframe>
   <br>
-  <a href="{{post.flnk}}" Download><button class="btn btn-primary">Download now</button></a>
+  <a href="http://{{header}}{{post.flnk}}" Download><button class="btn btn-primary">Download now</button></a>
 
   @endif
 </center>
-
-
-
-
-
-<!-- <style>
-  .w3-light-grey,
-  .w3-hover-light-grey:hover,
-  .w3-light-gray,
-  .w3-hover-light-gray:hover {
-    color: #000 !important;
-    background-color: #f1f1f1 !important;
-  }
-
-  .w3-card,
-  .w3-card-2 {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  }
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-
-    .darktheme .w3-code {
-      background-color: rgb(40, 44, 52);
-      color: white;
-      border-left-color: rgb(40, 44, 52) !important;
-    }
-
-    .w3-border-green,
-    .w3-hover-border-green:hover {
-      border-color: #4CAF50 !important;
-    }
-
-    .w3-section,
-    .w3-code {
-      margin-top: 16px !important;
-      margin-bottom: 16px !important;
-    }
-
-    .w3-code {
-      width: auto;
-      background-color: #fff;
-      padding: 8px 12px;
-      border-left: 4px solid #4CAF50;
-      word-wrap: break-word;
-    }
-
-    .w3-code,
-    .w3-codespan {
-      font-family: Consolas, "courier new";
-      font-size: 16px;
-    }
-
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
-
-    user agent stylesheet div {
-      display: block;
-    }
-
-    .w3-light-grey,
-    .w3-hover-light-grey:hover,
-    .w3-light-gray,
-    .w3-hover-light-gray:hover {
-      color: #000 !important;
-      background-color: #f1f1f1 !important;
-    }
-
-    html,
-    body {
-      font-family: Verdana, sans-serif;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-  }
-</style> -->
-
 <hr>
 @endsection

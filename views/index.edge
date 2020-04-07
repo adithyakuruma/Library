@@ -4,7 +4,6 @@
 <!-- Page Header -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
 <header class="masthead" style="background-image: url('img/home-bg.jpg')">
   <div class="overlay"></div>
   <div class="container">
@@ -13,7 +12,7 @@
         <div class="site-heading">
           @if(company.role == "company")
           <h1>welcome {{company.ownername}}</h1>
-          <span class="subheading">{{company.Companyname}}</span>
+          <span class="subheading">{{company.description}}</span>
           @elseif(user.role=="user")
           <h1>welcome {{user.username}}</h1>
           @else
@@ -22,8 +21,6 @@
             academically and professionally </span>
           <h4>DIGITAL LIBRARY</h4>
           @endif
-
-
         </div>
       </div>
     </div>
@@ -59,20 +56,8 @@
                   </div>
                 </article>
 
-                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                  <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-                  <a class="a2a_button_facebook"></a>
-                  <a class="a2a_button_google_gmail"></a>
-                  <a class="a2a_button_whatsapp"></a>
-                </div>
-                <script>
-                  var a2a_config = a2a_config || {};
-                  a2a_config.onclick = 1;
-                  a2a_config.num_services = 4;
-                </script>
-                <script async src="https://static.addtoany.com/menu/page.js"></script>
                 <p class="post-meta">Posted by
-                  <a href="#">{{ post.author.Companyname }}</a>
+                  <a href="#">{{ post.author.ownername }}</a>
                   on {{ post.createdAt.toDateString() }}</p>
               </div>
             </div>
