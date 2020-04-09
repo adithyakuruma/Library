@@ -28,6 +28,8 @@ const deletePostcontroller = require("./controllers/deletePost")
 const acceptRequestscontrollers = require("./controllers/acceptRequests")
 const acceptApprovalsController = require("./controllers/acceptApprovals")
 const userProfileController = require("./controllers/userProfile")
+const updateLikeController = require("./controllers/updateLike");
+const deleteLikeController = require("./controllers/deleteLike")
 const app = new express();
 mongoose.connect("mongodb://localhost/library");
 
@@ -81,6 +83,9 @@ app.get("/delete/:id", deletePostcontroller)
 app.get("/users/authors", acceptRequestscontrollers)
 app.get("/acceptApprovals/:id", acceptApprovalsController)
 app.get("/auth/userProfile", userProfileController)
+app.get("/update/like/:id", updateLikeController);
+app.get("/delete/like/:id",deleteLikeController);
+
 app.use((req, res) => res.render('not-found'));
 
 app.listen(4000, () => {

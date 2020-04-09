@@ -23,19 +23,36 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-          <h5>Share Now</h5>
-          <!-- <a class="a2a_dd" href="https://www.addtoany.com/share"></a> -->
-          <a class="a2a_button_facebook"></a>
-          <a class="a2a_button_google_gmail"></a>
-          <a class="a2a_button_whatsapp"></a>
-        </div>
         <script>
           var a2a_config = a2a_config || {};
           a2a_config.onclick = 1;
           a2a_config.num_services = 4;
         </script>
         <script async src="https://static.addtoany.com/menu/page.js"></script>
+        @if(likes_count)
+        Liked by {{likes_count}}
+        @if(likes_count >1)
+        persons
+        @else
+        person
+        @endif
+        @endif
+        <br>
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style form-inline">
+          @if(!liked)
+          <a href="/update/like/{{post._id}}"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
+          </a>
+          @else
+          <a href="/delete/like/{{post._id}}"><i class="fa fa-thumbs-down" style="font-size:24px"></i></a>
+          @endif
+          <i class="fa fa-share" style="font-size:24px"></i>
+          <!-- <a class="a2a_dd" href="https://www.addtoany.com/share"></a> -->
+          <a class="a2a_button_facebook"></a>
+          <a class="a2a_button_google_gmail"></a>
+          <a class="a2a_button_whatsapp"></a>
+        </div>
+
+
 
         {{{ post.content }}}
       </div>
