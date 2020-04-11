@@ -24,14 +24,14 @@
                     <div class="form-group floating-label-form-group controls">
                         <label>Username</label>
                         <input type="text" name="ownername" value="{{ company.ownername || '' }}" required
-                            placeholder="Username" class="form-control">
+                            placeholder="Username" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Email</label>
                         <input type="email" name="email" value="{{ company.email || '' }}" required placeholder="Email"
-                            class="form-control">
+                            class="form-control" disabled>
                     </div>
                 </div>
 
@@ -39,27 +39,34 @@
                     <div class="form-group floating-label-form-group controls">
                         <label>Description</label>
                         <input type="text" name="description" value="{{ company.description || '' }}" required
-                            placeholder="Something About You" class="form-control">
+                            placeholder="Something About You" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Contact</label>
                         <input type="text" name="Contact" value="{{ company.Contact || '' }}" required
-                            placeholder="Enter your Phone Number" class="form-control">
+                            placeholder="Enter your Phone Number" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Address</label>
-                        <textarea cols="30" rows="5" type="text" name="address" value="{{ company.address || '' }}"
-                            required placeholder="Address" class="form-control"></textarea>
+                        <textarea disabled>{{company.address}} </textarea>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<style>
+    input[type="text"]:disabled {
+        background: #ffffff;
+    }
 
+    input[type="email"]:disabled {
+        background: #ffffff;
+    }
+</style>
 
 @endsection

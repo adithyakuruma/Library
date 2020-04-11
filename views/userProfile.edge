@@ -17,7 +17,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-2"> <img src="{{user.image}}" alt="" height="250px" width="250px">
+        <div class="col-md-2"> <img src="{{user.image}}" alt="" height="300px" width="300px">
         </div>
         <div class="col-md-8 offset-md-2">
 
@@ -26,14 +26,14 @@
                     <div class="form-group floating-label-form-group controls">
                         <label>Username</label>
                         <input type="text" name="username" value="{{ user.username || '' }}" required
-                            placeholder="Username" class="form-control" readonly>
+                            placeholder="Username" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Email</label>
                         <input type="email" name="email" value="{{ user.email || '' }}" required placeholder="Email"
-                            class="form-control" disabled="disabled">
+                            class="form-control" disabled>
                     </div>
                 </div>
 
@@ -41,20 +41,28 @@
                     <div class="form-group floating-label-form-group controls">
                         <label>Phone Number</label>
                         <input type="text" name="phoneNumber" value="{{ user.phoneNumber || '' }}" required
-                            placeholder="Phone Number" class="form-control" disabled="disabled">
+                            placeholder="Phone Number" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Address</label>
                         <input type="text" name="address" value="{{ user.address || '' }}" required
-                            placeholder="Address" class="form-control" disabled="disabled">
+                            placeholder="Address" class="form-control" disabled>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<style>
+    input[type="text"]:disabled {
+        background: #ffffff;
+    }
 
+    input[type="email"]:disabled {
+        background: #ffffff;
+    }
+</style>
 
 @endsection
