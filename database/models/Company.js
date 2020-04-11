@@ -14,7 +14,7 @@ const CompanySchema = new mongoose.Schema({
         unique: true,
         required: [true, 'Please provide your email.']
     },
-
+    image: String,
     description: {
         type: String,
         required: [true, 'Please provide your description.']

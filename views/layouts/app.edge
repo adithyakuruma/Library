@@ -54,53 +54,14 @@
           <li class="nav-item">
             <a class="nav-link" href="/company/posts">Books</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/authorProfile">My Profile</a>
+          </li>
           @endif
           @if(user.role == "user")
           <li class="nav-item">
             <a class="nav-link" href="/auth/userProfile">{{user.username}}</a>
           </li>
-          <style>
-            .dark-mode {
-              background-color: #1c1c1e;
-              color: #fefefe;
-            }
-
-            .dark-mode a {
-              color: #ffffff;
-            }
-
-            .dark-mode img {
-              filter: grayscale(20%)
-            }
-          </style>
-          <script>
-            function dark_mode() {
-              if (localStorage.getItem("dark") == "true") {
-                var element = document.body;
-                element.classList.add("dark-mode");
-                window.matchMedia("(prefers-color-scheme:dark)")
-                document.getElementById("mode").innerHTML = "light mode";
-                document.getElementById("mode").setAttribute("onClick", "javascript: light();");
-              }
-              else if (localStorage.getItem("dark") == "false") {
-                var element = document.body;
-                element.classList.remove("dark-mode");
-
-                window.matchMedia("(prefers-color-scheme:light)")
-                document.getElementById("mode").innerHTML = "dark mode";
-                document.getElementById("mode").setAttribute("onClick", "javascript: dark();");;
-              }
-            }
-            function dark() {
-              localStorage.setItem("dark", "true");
-              location.reload();
-            }
-            function light() {
-              localStorage.setItem("dark", "false");
-              location.reload();
-            }
-          </script>
-
 
           <li class="nav-item">
             <a onclick="dark()" id="mode">dark mode</a>
@@ -170,6 +131,47 @@
 
   <!-- Custom scripts for this template -->
   <script src="/js/clean-blog.min.js"></script>
+  <style>
+    .dark-mode {
+      background-color: #1c1c1e;
+      color: #fefefe;
+    }
+
+    .dark-mode a {
+      color: #ffffff;
+    }
+
+    .dark-mode img {
+      filter: grayscale(20%)
+    }
+  </style>
+  <script>
+    function dark_mode() {
+      if (localStorage.getItem("dark") == "true") {
+        var element = document.body;
+        element.classList.add("dark-mode");
+        window.matchMedia("(prefers-color-scheme:dark)")
+        document.getElementById("mode").innerHTML = "light mode";
+        document.getElementById("mode").setAttribute("onClick", "javascript: light();");
+      }
+      else if (localStorage.getItem("dark") == "false") {
+        var element = document.body;
+        element.classList.remove("dark-mode");
+
+        window.matchMedia("(prefers-color-scheme:light)")
+        document.getElementById("mode").innerHTML = "dark mode";
+        document.getElementById("mode").setAttribute("onClick", "javascript: dark();");;
+      }
+    }
+    function dark() {
+      localStorage.setItem("dark", "true");
+      location.reload();
+    }
+    function light() {
+      localStorage.setItem("dark", "false");
+      location.reload();
+    }
+  </script>
 
 </body>
 

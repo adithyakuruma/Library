@@ -28,6 +28,7 @@ const deletePostcontroller = require("./controllers/deletePost")
 const acceptRequestscontrollers = require("./controllers/acceptRequests")
 const acceptApprovalsController = require("./controllers/acceptApprovals")
 const userProfileController = require("./controllers/userProfile")
+const authorProfileController = require("./controllers/authorProfile")
 const updateLikeController = require("./controllers/updateLike");
 const deleteLikeController = require("./controllers/deleteLike")
 const app = new express();
@@ -83,8 +84,9 @@ app.get("/delete/:id", deletePostcontroller)
 app.get("/users/authors", acceptRequestscontrollers)
 app.get("/acceptApprovals/:id", acceptApprovalsController)
 app.get("/auth/userProfile", userProfileController)
+app.get("/auth/authorProfile", authorProfileController)
 app.get("/update/like/:id", updateLikeController);
-app.get("/delete/like/:id",deleteLikeController);
+app.get("/delete/like/:id", deleteLikeController);
 
 app.use((req, res) => res.render('not-found'));
 
