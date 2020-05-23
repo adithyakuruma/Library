@@ -83,10 +83,202 @@
       </div>
     </div>
   </nav>
-
   @!section('content')
 
   <!-- Footer -->
+  <div class="row justify-content-center darkmode-ignore">
+    <div class="col-4">
+      <div id="container" class="card example-1 square scrollbar">
+        @if(user.role=="user")
+        <div class="chat-container ">
+          <img src="{{user.image}}" alt="" height="50px" width="50px">
+
+          <p class="voice2text"></p>
+        </div>
+        @elseif(company.role == "company")
+        <img src="{{company.image}}" alt="" height="300px" width="300px">
+        <div class="chat-container ">
+          <p class="voice2text"> </p>
+        </div>
+        @else
+        <img src="" alt="" height="300px" width="300px">
+        <div class="chat-container ">
+          <p class="voice2text"> </p>
+        </div>
+        @endif
+        <div class="chat-container darker ">
+          <p class="voice2text">talk with me to give the feedback about the website.</p>
+        </div>
+
+      </div>
+      <a class="voice" href="#"> <button class="btn btn-outline-danger float-right">Let's talk
+        </button></a>
+    </div>
+  </div>
+  <style>
+    .example-1 {
+      position: relative;
+      overflow-y: scroll;
+      height: 200px;
+      border: 2px solid #dedede;
+      background-color: white;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 5px auto;
+      width: 60%
+    }
+
+    .chat-container,
+    .card {
+      border: 2px solid #dedede;
+      background-color: white;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 5px auto;
+      width: 60%
+    }
+
+    .chat-container p {
+      background-color: white;
+      margin-left: 0;
+      font-family: Helvetica;
+    }
+
+    /* Darker chat container */
+    .darker {
+      border-color: #ccc;
+      margin-right: 0;
+      background-color: white;
+    }
+
+    .darker p {
+      background-color: white;
+    }
+
+    /* Clear floats */
+    .chat-container::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Style images */
+    .card img {
+      float: left;
+      max-width: 60px;
+      max-height: 60px;
+      width: 100%;
+      margin-right: 20px;
+      margin-top: 20px;
+      border-radius: 50%;
+    }
+
+    .chat-container img.right {
+      float: right;
+      margin-left: 20px;
+      margin-right: 0;
+    }
+
+    /* Style time text */
+    .time-right {
+      float: right;
+      color: #aaa;
+    }
+
+    /* Style time text */
+    .time-left {
+      float: left;
+      color: #999;
+    }
+  </style>
+  <script>
+    const voice = document.querySelector(".voice");
+    const voice2text = document.querySelector(".voice2text");
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recorder = new SpeechRecognition();
+
+    function addHumanText(text) {
+      const chatContainer = document.createElement("div");
+      chatContainer.classList.add("chat-container");
+      const chatBox = document.createElement("p");
+      chatBox.classList.add("voice2text");
+      const chatText = document.createTextNode(text);
+      chatBox.appendChild(chatText);
+      chatContainer.appendChild(chatBox);
+      return chatContainer;
+    }
+
+    function addBotText(text) {
+      const chatContainer1 = document.createElement("div");
+      chatContainer1.classList.add("chat-container");
+      chatContainer1.classList.add("darker");
+      const chatBox1 = document.createElement("p");
+      chatBox1.classList.add("voice2text");
+      const chatText1 = document.createTextNode(text);
+      chatBox1.appendChild(chatText1);
+      chatContainer1.appendChild(chatBox1);
+      return chatContainer1;
+    }
+
+    function botVoice(message) {
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = "Sorry, I didn't get it.";
+      if (message.includes('hi')) {
+        speech.text = "hello {{user.username}}";
+      }
+
+      if (message.includes('say hi to my friends')) {
+        speech.text = "hii guys,  good evening..!!";
+      }
+      if (message.includes('hi ')) {
+        speech.text = " Hey there! How was your experience with the website? Please rate between 1 and 5 ";
+      }
+      if (message.includes('It was good I would rate  as 4')) {
+        speech.text = "Nice to hear that, what all changes would you like to suggest?";
+      }
+      if (message.includes('it was good I would rate  as 3')) {
+        speech.text = "Nice to hear that, what all changes would you like to suggest?";
+      } if (message.includes('I would rate as to')) {
+        speech.text = "Sorry to hear that, what all problems did you face?";
+      } if (message.includes('I would rate as one')) {
+        speech.text = "We're extremely sorry to hear that, what all problems did you face?";
+      } if (message.includes('It was good, I would rate  as 5')) {
+        speech.text = "Nice to hear that, what all changes would you like to suggest?";
+      }
+      if (message.includes('I would like the feature of blue light filter.')) {
+        speech.text = "Of course. We are currently working on that. You can expect that feature in the latest updates.";
+      }
+
+      if (message.includes('Thank You')) {
+        speech.text = "Thank you so much for your feedback,have a nice day.";
+      }
+
+      speech.volume = 1;
+      speech.rate = 1;
+      speech.pitch = 1;
+      window.speechSynthesis.speak(speech);
+      var element = document.getElementById("container");
+      element.appendChild(addBotText(speech.text));
+    }
+
+    recorder.onstart = () => {
+      console.log('Voice activated');
+    };
+
+    recorder.onresult = (event) => {
+      console.log("event");
+      const resultIndex = event.resultIndex;
+      const transcript = event.results[resultIndex][0].transcript;
+      var element = document.getElementById("container");
+      element.appendChild(addHumanText(transcript));
+      botVoice(transcript);
+    };
+
+    voice.addEventListener('click', () => {
+      recorder.start();
+    });
+  </script>
   <footer>
     <div class="container">
       <div class="row">

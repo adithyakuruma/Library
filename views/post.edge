@@ -65,18 +65,22 @@
   </div>
 </article>
 <center>
-  @if(company.role == 'company')
-  <a href="/delete/{{post._id}}"><button class="btn btn-danger">Delete Post</button></a>
-  <a href="/applications/{{post._id}}"><button class="btn btn-primary">View Downloads</button></a>
-  @endif
-  @if(user.role == 'user')
+  
+  @if(user.role == 'user' || company.role == 'company' )
 
   <iframe name="Framename" src="{{post.lnk}}" width="700" height="540" frameborder="0" scrolling="auto"
     class="frame-area">
   </iframe>
   <br>
-  <a href="http://{{header}}{{post.flnk}}" Download><button class="btn btn-primary">Download now</button></a>
-
+  <a href="http://{{header}}{{post.flnk}}" onclick="myfunction()" Download><button class="btn btn-primary">Download now</button></a>
+<script>
+function myfunction(){
+  <a  href="/apply/{{post._id}}">
+}</script>
+  @endif
+  @if(company.ownername == post.author.ownername)
+  <a href="/delete/{{post._id}}"><button class="btn btn-danger">Delete Post</button></a>
+  <a href="/applications/{{post._id}}"><button class="btn btn-primary">View Downloads</button></a>
   @endif
 </center>
 <hr>

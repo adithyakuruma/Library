@@ -4,19 +4,19 @@ const User = require('../database/models/User');
 module.exports = async (req, res) => {
     const users = await User.findById(req.session.userId);
     const post = await Post.findById(req.params.id)
+    console.log(post)
     let applicants = post.Applicants
     applicants.push(users)
     post.update({
-        Applicants : applicants
+        Applicants: applicants
     },
-    (err,done)=>{
-        if(err){
-            res.redirect(`/post/$(req.params.id)`)
-            console.log(err)
-        }else{
-            req.flash('data', 'Applied Succesfully for ' + post.title)
-            res.redirect('/')
-        }
-    })
-  }
-  
+        (err, done) => {
+            if (err) {
+                res.redirect(`/post/$(req.params.id)`)
+                console.log(err)
+            } else {
+                req.flash('data', 'Applied Succesfully for ' + post.title)
+                res.redirect('/')
+            }
+        })
+}
