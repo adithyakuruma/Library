@@ -57,15 +57,18 @@
           <li class="nav-item">
             <a class="nav-link" href="/auth/authorProfile">My Profile</a>
           </li>
+          <li class="nav-item">
+            <a onclick="dark()" id="mode">dark mode</a>
+          </li>
           @endif
           @if(user.role == "user")
           <li class="nav-item">
             <a class="nav-link" href="/auth/userProfile">{{user.username}}</a>
           </li>
-
           <li class="nav-item">
             <a onclick="dark()" id="mode">dark mode</a>
           </li>
+
           @endif
           @if(!auth)
           <li class="nav-item">
@@ -73,6 +76,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/auth/Companylogin">Author</a>
+          </li>
+          <li class="nav-item">
+            <a onclick="dark()" id="mode">dark mode</a>
           </li>
           @else
           <li class="nav-item">
@@ -86,35 +92,73 @@
   @!section('content')
 
   <!-- Footer -->
-  <div class="row justify-content-center darkmode-ignore">
-    <div class="col-4">
-      <div id="container" class="card example-1 square scrollbar">
-        @if(user.role=="user")
-        <div class="chat-container ">
-          <img src="{{user.image}}" alt="" height="50px" width="50px">
 
-          <p class="voice2text"></p>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto darkmode-ignore">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
         </div>
-        @elseif(company.role == "company")
-        <img src="{{company.image}}" alt="" height="300px" width="300px">
-        <div class="chat-container ">
-          <p class="voice2text"> </p>
-        </div>
-        @else
-        <img src="" alt="" height="300px" width="300px">
-        <div class="chat-container ">
-          <p class="voice2text"> </p>
-        </div>
-        @endif
-        <div class="chat-container darker ">
-          <p class="voice2text">talk with me to give the feedback about the website.</p>
-        </div>
+        <div class="col-lg-4 col-md-2  ">
+          <div id="container" class="card  form-control  example-1  square scrollbar" height="250px" width="250px">
+            @if(user.role=="user")
+            <div class="chat-container ">
+              <!-- <img src="{{user.image}}" alt="" height="50px" width="50px"> -->
 
+              <p class="voice2text">hello</p>
+            </div>
+            @elseif(company.role == "company")
+            <!-- <img src="{{company.image}}" alt="" height="300px" width="50px"> -->
+            <div class="chat-container ">
+              <p class="voice2text"> hello</p>
+            </div>
+            @else
+            <!-- <img src="" alt="" height="50px" width="50px"> -->
+            <div class="chat-container ">
+              <p class="voice2text"> </p>
+            </div>
+            @endif
+            <div class="chat-container darker ">
+              <p class="voice2text">talk with me to give the feedback about the website.</p>
+            </div>
+
+          </div>
+          <br>
+          <a class="voice" href="#"> <button class="btn btn-outline-danger float-right">Let's talk
+            </button></a>
+
+        </div>
       </div>
-      <a class="voice" href="#"> <button class="btn btn-outline-danger float-right">Let's talk
-        </button></a>
+
     </div>
-  </div>
+  </footer>
+
   <style>
     .example-1 {
       position: relative;
@@ -125,17 +169,16 @@
       border-radius: 10px;
       padding: 5px;
       margin: 5px auto;
-      width: 60%
+      width: max-content;
     }
 
-    .chat-container,
-    .card {
+    .chat-container {
       border: 2px solid #dedede;
       background-color: white;
       border-radius: 10px;
       padding: 5px;
       margin: 5px auto;
-      width: 60%
+      width: 60%;
     }
 
     .chat-container p {
@@ -177,18 +220,6 @@
       float: right;
       margin-left: 20px;
       margin-right: 0;
-    }
-
-    /* Style time text */
-    .time-right {
-      float: right;
-      color: #aaa;
-    }
-
-    /* Style time text */
-    .time-left {
-      float: left;
-      color: #999;
     }
   </style>
   <script>
@@ -234,10 +265,10 @@
       if (message.includes('hi ')) {
         speech.text = " Hey there! How was your experience with the website? Please rate between 1 and 5 ";
       }
-      if (message.includes('It was good I would rate  as 4')) {
+      if (message.includes('4')) {
         speech.text = "Nice to hear that, what all changes would you like to suggest?";
       }
-      if (message.includes('it was good I would rate  as 3')) {
+      if (message.includes('3')) {
         speech.text = "Nice to hear that, what all changes would you like to suggest?";
       } if (message.includes('I would rate as to')) {
         speech.text = "Sorry to hear that, what all problems did you face?";
@@ -279,41 +310,12 @@
       recorder.start();
     });
   </script>
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto darkmode-ignore">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+
+
+
+
+
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
@@ -326,7 +328,7 @@
   <style>
     .dark-mode {
       background-color: #1c1c1e;
-      color: #fefefe;
+      color: #f0a029;
     }
 
     .dark-mode a {

@@ -1,2 +1,2 @@
-# Jobplatforms
-platforms for job postings
+# Libray management
+platforms for uploading books 
