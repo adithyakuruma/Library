@@ -32,7 +32,10 @@ const authorProfileController = require("./controllers/authorProfile")
 const updateLikeController = require("./controllers/updateLike");
 const deleteLikeController = require("./controllers/deleteLike")
 const app = new express();
-mongoose.connect("mongodb://localhost/library");
+mongoose.connect("mongodb://localhost/library", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 app.use(connectFlash());
 

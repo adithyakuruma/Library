@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
         status: "Approved"
     }, (error, done) => {
         if (error) {
-            console.log(err)
+            // console.log(err)
             res.redirect('/users/authors')
         } else {
             res.redirect('/users/authors')
